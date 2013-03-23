@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<project name="JSON WAR" default="war">
+
+
+<property name="dir.dist" value="dist" />
+<property name="dir.target" value="target" />
+<property name="dir.web" value="WebContent" />
+<property name="dir.lib" value="${dir.web}/WEB-INF/lib" />
+<property name="dir.src" value="src" />
+<property name="war.name" value="json-war" />
+
+<path id="classpath">
+	<fileset dir="${dir.lib}">
+		<include name="*.jar"/>
+	</fileset>
+</path>
+
+  
+<target name="clear" description="Borra para un recompilacion completa">
+	<echo>Borrando directorios: ................................. </echo>
+	<delete dir="${dir.dist}" />
+	<delete dir="${dir.target}" />
+</target>
+
+<target name="makedir" depends="clear" description="Crea los directorios">
+	<echo>verificando y creando directorios: ..................... </echo>
+	<mkdir dir="${dir.dist}" />
+	<mkdir dir="${dir.target}" />
+</target>
+
+<target name="make" depends="makedir" description="Compila el proyecto">
+	<echo>Compilando Proyecto: .................................. </echo>
+	<copy todir="${dir.target}">
+		<fileset dir="${dir.src}">
+			<exclude name="**/*.java"/>
+			<exclude name="**/.svn"/>
+		</fileset>
+	</copy>
+    <javac srcdir="${dir.src}" destdir="${dir.target}" classpathref="classpath" />
+</target>
+
+<target name="war" depends="make" description="Crea el jar">
+	<echo>Creando WAR: .......................................... </echo>
+	<war destfile="${dir.dist}/${war.name}.war" webxml="${dir.web}/WEB-INF/web.xml">
+		<fileset dir="${dir.web}"/>
+		<lib dir="${dir.web}/WEB-INF/lib"/>
+		<classes dir="${dir.target}"/>
+	</war> 
+</target>
+
+</project>
