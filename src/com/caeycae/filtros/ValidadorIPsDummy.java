@@ -1,11 +1,12 @@
-package com.caeycae.servicios;
+package com.caeycae.filtros;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
-public class ValidadorIPsDummy implements IValidadorIPs {
+
+public class ValidadorIPsDummy {
 
 	private static ValidadorIPsDummy instancia;
 	private final static Logger LOGGER = Logger.getLogger(ValidadorIPsDummy.class); 
@@ -25,8 +26,7 @@ public class ValidadorIPsDummy implements IValidadorIPs {
 			instancia = new ValidadorIPsDummy();
 		return instancia;
 	}
-	
-	@Override
+
 	public boolean esValida(String ip) {
 		boolean valida = ipsValidas.contains(ip);
 		if(!valida)

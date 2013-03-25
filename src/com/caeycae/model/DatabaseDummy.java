@@ -1,11 +1,9 @@
-package com.caeycae.servicios;
+package com.caeycae.model;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.caeycae.model.Cantante;
-import com.caeycae.model.Tema;
 
 public class DatabaseDummy {
 
